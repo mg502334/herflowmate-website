@@ -1,5 +1,6 @@
 import { X, Plus, Minus, Trash2, ShieldCheck, HelpCircle } from "lucide-react";
 import { useCart } from "./CartContext";
+import { useCustomerAuth } from "./CustomerAuthContext";
 import { useState } from "react";
 
 export function CartDrawer() {
@@ -14,6 +15,7 @@ export function CartDrawer() {
     unclaimFreeBag,
     clearCart,
   } = useCart();
+  const { user } = useCustomerAuth();
 
   const [checkoutStep, setCheckoutStep] = useState<"cart" | "submitting" | "success">("cart");
 
@@ -33,6 +35,7 @@ export function CartDrawer() {
         body: JSON.stringify({
           cart,
           total,
+          userId: user?.id,
         }),
       });
       

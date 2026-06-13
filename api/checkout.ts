@@ -19,7 +19,7 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { cart, total } = req.body || {};
+  const { cart, total, userId } = req.body || {};
 
   if (!cart || cart.length === 0) {
     return res.status(400).json({ error: "Cart is empty" });
@@ -49,15 +49,21 @@ export default async function handler(req: any, res: any) {
         amount = 0;
       }
 
-      return {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: itemName,
-            images: [item.image].filter(Boolean),
-          },
-          unit_amount: amount,
+      const priceData: any = {
+        currency: "usd",
+        product_data: {
+          name: itemName,
+          images: [item.image].filter(Boolean),
         },
+        unit_amount: amount,
+      };
+
+      if (item.isSubscription && amount > 0) {
+        priceData.recurring = { interval: 'month' };
+      }
+
+      return {
+        price_data: priceData,
         quantity: item.quantity || 1,
       };
     });
@@ -83,13 +89,19 @@ export default async function handler(req: any, res: any) {
     const origin = req.headers.origin || "https://herflowmate.com";
 
     // Create Stripe Checkout Session
-    const session = await stripe.checkout.sessions.create({
+    const sessionConfig: any = {
       payment_method_types: ["card"],
       line_items: lineItems,
-      mode: "payment", // Use 'payment' for one-time, or 'subscription' if setting up actual recurring billing. For MVP, 'payment' is often sufficient to capture the initial order.
+      mode: hasSubscription ? "subscription" : "payment",
       success_url: `${origin}/?success=true`,
       cancel_url: `${origin}/?canceled=true`,
-    });
+    };
+
+    if (userId) {
+      sessionConfig.client_reference_id = userId;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     return res.status(200).json({ id: session.id, url: session.url });
   } catch (error: any) {

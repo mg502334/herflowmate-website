@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 export function AccountDashboard() {
   const { user } = useCustomerAuth();
   const [profile, setProfile] = useState<{ first_name?: string } | null>(null);
+  const [subscriptions, setSubscriptions] = useState<any[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -17,6 +18,15 @@ export function AccountDashboard() {
         .single()
         .then(({ data }) => {
           if (data) setProfile(data);
+        });
+        
+      supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('status', 'active')
+        .then(({ data }) => {
+          if (data) setSubscriptions(data);
         });
     }
   }, [user]);
@@ -49,9 +59,23 @@ export function AccountDashboard() {
             <Package size={24} />
           </div>
           <h3 className="text-xl font-bold text-[#2C3E50] mb-2">My Subscriptions</h3>
-          <p className="text-[#2C3E50]/70 mb-4 text-sm">You have no active subscriptions right now.</p>
-          <Link to="/shop" className="text-[#2C3E50] font-bold text-sm hover:underline flex items-center gap-1">
-            Browse Shop →
+          {subscriptions.length > 0 ? (
+            <div className="flex flex-col gap-3 mb-4">
+              {subscriptions.map(sub => (
+                <div key={sub.id} className="p-3 bg-[#FDF1F3] rounded-xl border border-[#F8C8D1]/30 text-sm">
+                  <div className="font-bold text-[#2C3E50]">{sub.plan_name}</div>
+                  <div className="text-xs text-[#2C3E50]/70 mt-0.5">Renews: {new Date(sub.current_period_end).toLocaleDateString()}</div>
+                </div>
+              ))}
+              <a href="mailto:support@herflowmate.com?subject=Manage%20Subscription" className="text-[#2C3E50] font-bold text-xs hover:underline mt-2">
+                Manage / Cancel Subscription →
+              </a>
+            </div>
+          ) : (
+            <p className="text-[#2C3E50]/70 mb-4 text-sm">You have no active subscriptions right now.</p>
+          )}
+          <Link to="/#products" className="text-[#2C3E50] font-bold text-sm hover:underline flex items-center gap-1">
+            Build a Custom Box →
           </Link>
         </div>
       </div>

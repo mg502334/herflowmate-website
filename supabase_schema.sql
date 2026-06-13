@@ -85,3 +85,26 @@ CREATE POLICY "Users can update own period logs" ON public.period_logs
 
 CREATE POLICY "Users can delete own period logs" ON public.period_logs
   FOR DELETE USING (auth.uid() = user_id);
+
+-- Create the subscriptions table
+CREATE TABLE IF NOT EXISTS public.subscriptions (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id uuid REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+  stripe_subscription_id text UNIQUE NOT NULL,
+  status text NOT NULL,
+  plan_name text NOT NULL,
+  current_period_end timestamp with time zone NOT NULL,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.subscriptions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own subscriptions" ON public.subscriptions
+  FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Allow webhook insert subscriptions" ON public.subscriptions
+  FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Allow webhook update subscriptions" ON public.subscriptions
+  FOR UPDATE USING (true);
+
