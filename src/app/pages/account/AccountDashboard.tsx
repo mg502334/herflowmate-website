@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../../lib/supabase';
 import { useCustomerAuth } from '../../components/CustomerAuthContext';
 import { Sparkles, CalendarHeart, Package } from 'lucide-react';
 import { Link } from 'react-router';

@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../../lib/supabase';
 import { CalendarHeart, LayoutDashboard, LogOut, Package } from 'lucide-react';
 
 export function AccountLayout() {

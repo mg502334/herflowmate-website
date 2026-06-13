@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '../../../lib/supabase';
 import { useCustomerAuth } from '../../components/CustomerAuthContext';
 import { CalendarHeart, Plus, Save, Clock, Droplets } from 'lucide-react';
 
