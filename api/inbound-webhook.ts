@@ -69,7 +69,7 @@ export default async function handler(req: any, res: any) {
 
     // 2. Send the Auto-Reply back to the customer
     await resend.emails.send({
-      from: \`HerFlowMate <\${inboxType}>\`, // Send from the exact address they emailed
+      from: `HerFlowMate <${inboxType}>`, // Send from the exact address they emailed
       to: senderEmail,
       subject: autoReplySubject,
       html: \`

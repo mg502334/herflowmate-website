@@ -27,7 +27,7 @@ export default async function handler(req: any, res: any) {
     const shipmentResponse = await fetch("https://api.goshippo.com/shipments/", {
       method: "POST",
       headers: {
-        "Authorization": \`ShippoToken \${apiKey}\`,
+        "Authorization": `ShippoToken ${apiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -83,7 +83,7 @@ export default async function handler(req: any, res: any) {
     const transactionResponse = await fetch("https://api.goshippo.com/transactions/", {
       method: "POST",
       headers: {
-        "Authorization": \`ShippoToken \${apiKey}\`,
+        "Authorization": `ShippoToken ${apiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
