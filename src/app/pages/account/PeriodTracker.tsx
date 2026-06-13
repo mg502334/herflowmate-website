@@ -53,6 +53,8 @@ export function PeriodTracker() {
       setEndDate('');
       setNotes('');
       fetchLogs();
+    } else {
+      console.error("Supabase Save Error:", error);
     }
     setSaving(false);
   };
