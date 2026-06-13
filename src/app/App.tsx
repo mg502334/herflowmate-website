@@ -33,6 +33,7 @@ import { SignInPage } from "./pages/SignInPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { AccountLayout } from "./pages/account/AccountLayout";
 import { AccountDashboard } from "./pages/account/AccountDashboard";
+import { Subscriptions } from "./pages/account/Subscriptions";
 import { PeriodTracker } from "./pages/account/PeriodTracker";
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
             <Route path="/account" element={<CustomerProtectedRoute />}>
               <Route element={<AccountLayout />}>
                 <Route index element={<AccountDashboard />} />
+                <Route path="subscriptions" element={<Subscriptions />} />
                 <Route path="tracker" element={<PeriodTracker />} />
               </Route>
             </Route>
