@@ -82,9 +82,9 @@ export function Hero() {
           {/* Statistics Grid */}
           <div className="flex items-center gap-8 mt-6 pt-6 border-t border-[#F8C8D1]/10">
             {[
-              { val: "100%", label: "Leak-Free Design" },
-              { val: "100%", label: "High-Quality Materials" },
-              { val: "0%", label: "Harsh Chemicals" },
+              { val: "100%", label: "Fully Customizable" },
+              { val: "20+", label: "Trusted Brands" },
+              { val: "0%", label: "Subscription Hassle" },
             ].map(({ val, label }) => (
               <div key={label}>
                 <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.45rem", fontWeight: 700, color: "#2C3E50" }}>{val}</div>
