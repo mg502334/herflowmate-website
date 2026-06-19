@@ -123,11 +123,11 @@ const brandsCatalog = [
 const categoriesList = ["Conventional", "Organic/Natural", "Period Underwear", "Cups/Discs"];
 
 const productTypes = {
-  "Pads": 0.50,
+  "Pads": 0.35,
   "Pantyliners": 0.20,
-  "Tampons": 0.40,
-  "Period Underwear": 15.00,
-  "Menstrual Cup": 25.00,
+  "Tampons": 0.35,
+  "Period Underwear": 25.00,
+  "Menstrual Cup": 35.00,
   "Disc": 3.00,
 };
 
