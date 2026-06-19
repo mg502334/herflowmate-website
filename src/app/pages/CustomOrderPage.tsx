@@ -14,108 +14,108 @@ const brandsCatalog = [
     brand: "Always",
     category: "Conventional",
     sublines: [
-      { name: "Radiant", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Infinity", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Teen", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Ultra Thin", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Maxi", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Pure Cotton", products: ["Pads"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" },
-      { name: "ZZZ", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
+      { name: "Radiant", products: ["Pads", "Pantyliners"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Infinity", products: ["Pads"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Teen", products: ["Pads"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Ultra Thin", products: ["Pads", "Pantyliners"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Maxi", products: ["Pads"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Pure Cotton", products: ["Pads"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "ZZZ", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Tampax",
     category: "Conventional",
     sublines: [
-      { name: "Pearl", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
-      { name: "Radiant", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
-      { name: "Pure Cotton", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
+      { name: "Pearl", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Radiant", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Pure Cotton", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "U by Kotex",
     category: "Conventional",
     sublines: [
-      { name: "CleanWear", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
-      { name: "Security", products: ["Pads", "Tampons"], image: "https://images.unsplash.com/photo-1622285141249-16a815a5fbc4?w=200&h=200&fit=crop" },
-      { name: "Click", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
-      { name: "Balance", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" }
+      { name: "CleanWear", products: ["Pads"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Security", products: ["Pads", "Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Click", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Balance", products: ["Pads", "Pantyliners"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Playtex",
     category: "Conventional",
     sublines: [
-      { name: "Sport", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
-      { name: "Clean Comfort", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
-      { name: "Simply Glide", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
+      { name: "Sport", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Clean Comfort", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Simply Glide", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "L.",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton", products: ["Pads", "Pantyliners", "Tampons"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" }
+      { name: "Organic Cotton", products: ["Pads", "Pantyliners", "Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Rael",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton Cover", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" },
-      { name: "Organic Cotton Core", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
+      { name: "Organic Cotton Cover", products: ["Pads", "Pantyliners"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Organic Cotton Core", products: ["Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Cora",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton", products: ["Pads", "Tampons"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" }
+      { name: "Organic Cotton", products: ["Pads", "Tampons"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "DivaCup",
     category: "Cups/Discs",
     sublines: [
-      { name: "Model 0", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Model 1", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Model 2", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
+      { name: "Model 0", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Model 1", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Model 2", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Saalt",
     category: "Cups/Discs",
     sublines: [
-      { name: "Teen Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Soft Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Regular Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Disc", products: ["Disc"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
+      { name: "Teen Cup", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Soft Cup", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Regular Cup", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Disc", products: ["Disc"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Flex",
     category: "Cups/Discs",
     sublines: [
-      { name: "Flex Disc", products: ["Disc"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
-      { name: "Flex Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
+      { name: "Flex Disc", products: ["Disc"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Flex Cup", products: ["Menstrual Cup"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Thinx",
     category: "Period Underwear",
     sublines: [
-      { name: "Hiphugger", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
-      { name: "Boyshort", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
-      { name: "Brief", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
+      { name: "Hiphugger", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Boyshort", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Brief", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   },
   {
     brand: "Knix",
     category: "Period Underwear",
     sublines: [
-      { name: "Bikini", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
-      { name: "Thong", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
-      { name: "Boyshort", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
+      { name: "Bikini", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Thong", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" },
+      { name: "Boyshort", products: ["Period Underwear"], image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging" }
     ]
   }
 ];
@@ -209,7 +209,7 @@ export function CustomOrderPage() {
       name: `Custom ${boxType.name}`,
       variant: `${totalItemsInBox} items included`,
       price: billing === "monthly" ? Math.round(boxType.price * 0.85) : boxType.price,
-      image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=600&h=700&fit=crop&auto=format",
+      image: "https://placehold.co/400x400/FDF1F3/2C3E50?font=playfair-display&text=Product\nPackaging",
       isSubscription: billing === "monthly",
       frequency: billing === "monthly" ? "4 weeks" : undefined,
       shippingCost: boxType.shipping,
