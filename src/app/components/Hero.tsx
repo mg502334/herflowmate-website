@@ -83,7 +83,7 @@ export function Hero() {
           <div className="flex items-center gap-8 mt-6 pt-6 border-t border-[#F8C8D1]/10">
             {[
               { val: "100%", label: "Fully Customizable" },
-              { val: "20+", label: "Trusted Brands" },
+              { val: "10+", label: "Trusted Brands" },
               { val: "0%", label: "Subscription Hassle" },
             ].map(({ val, label }) => (
               <div key={label}>
