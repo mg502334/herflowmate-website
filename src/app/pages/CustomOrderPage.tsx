@@ -202,10 +202,12 @@ export function CustomOrderPage() {
   };
 
   const handleAddBoxToCart = () => {
+    const totalItemsInBox = items.reduce((sum, item) => sum + item.qty, 0);
+
     addToCart({
       id: `custom-${boxType.id}-${Date.now()}`,
       name: `Custom ${boxType.name}`,
-      variant: `${items.length} items included`,
+      variant: `${totalItemsInBox} items included`,
       price: billing === "monthly" ? Math.round(boxType.price * 0.85) : boxType.price,
       image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=600&h=700&fit=crop&auto=format",
       isSubscription: billing === "monthly",
