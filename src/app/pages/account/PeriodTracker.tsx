@@ -189,68 +189,17 @@ export function PeriodTracker() {
         </div>
       </div>
 
-      {/* Main Content: Calendar (Top) + Form */}
+      {/* Main Content */}
       <div className="grid lg:grid-cols-12 gap-8">
         
-        {/* Left Column: Calendar & Toggles */}
-        <div className="lg:col-span-7 flex flex-col gap-6">
-          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col items-center">
-            
-            <div className="w-full flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-[#2C3E50] font-serif">Your Calendar</h2>
-              {/* Privacy Toggle for Fertility */}
-              <label className="flex items-center gap-3 cursor-pointer group">
-                <span className="text-sm font-bold text-gray-500 group-hover:text-[#2C3E50] transition-colors">Show Fertility Window</span>
-                <div className="relative">
-                  <input 
-                    type="checkbox" 
-                    className="sr-only" 
-                    checked={showFertility}
-                    onChange={() => setShowFertility(!showFertility)}
-                  />
-                  <div className={`block w-10 h-6 rounded-full transition-colors ${showFertility ? 'bg-[#6A5ACD]' : 'bg-gray-200'}`}></div>
-                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showFertility ? 'translate-x-4' : ''}`}></div>
-                </div>
-              </label>
-            </div>
-
-            <style>{`
-              .rdp { --rdp-cell-size: 40px; margin: 0; }
-              .rdp-day_selected { background-color: transparent !important; }
-            `}</style>
-            <DayPicker
-              mode="single"
-              onDayClick={handleDayClick}
-              modifiers={modifiers}
-              modifiersStyles={modifiersStyles}
-              className="bg-white"
-            />
-
-            {/* Legend */}
-            <div className="w-full mt-6 pt-6 border-t border-gray-100 grid grid-cols-2 md:grid-cols-3 gap-3">
-              <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
-                <div className="w-3 h-3 rounded-full bg-[#F8C8D1]" /> Logged Period
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
-                <div className="w-3 h-3 rounded-full bg-[#FDF1F3] border border-dashed border-[#F8C8D1]" /> Predicted
-              </div>
-              {showFertility && (
-                <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
-                  <div className="w-3 h-3 rounded-full bg-[#E6E6FA]" /> Fertile Window
-                </div>
-              )}
-            </div>
-
-          </div>
-        </div>
-
-        {/* Right Column: Predictions & Add Form */}
+        {/* Left Column: Predictions & Add Form */}
         <div className="lg:col-span-5 flex flex-col gap-6">
           
-          <div className="bg-[#FAFAFA] rounded-3xl p-6 border border-[#F8C8D1]/30">
+          {/* Prediction Card */}
+          <div className="bg-[#FAFAFA] rounded-3xl p-6 border border-[#F8C8D1]/30 flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-4 text-[#F8C8D1]">
               <Clock size={20} />
-              <h2 className="text-lg font-bold text-[#2C3E50]">Next Period Prediction</h2>
+              <h2 className="text-lg font-bold text-[#2C3E50] font-serif">Next Period Prediction</h2>
             </div>
             {predictions ? (
               <div>
@@ -263,10 +212,11 @@ export function PeriodTracker() {
                 </div>
               </div>
             ) : (
-              <p className="text-gray-500">Log at least one period to unlock predictions.</p>
+              <p className="text-gray-500 text-sm">Log at least one period to unlock predictions.</p>
             )}
           </div>
 
+          {/* Quick Log Form */}
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 flex-1">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold text-[#2C3E50] font-serif">Quick Log</h2>
@@ -318,21 +268,65 @@ export function PeriodTracker() {
                 </button>
               </form>
             ) : (
-              <div className="text-center py-10">
+              <div className="text-center py-8">
                 <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-300">
                   <CalendarHeart size={32} />
                 </div>
                 <p className="text-gray-500 text-sm max-w-[200px] mx-auto">
                   Select a date on the calendar or click the plus icon to log a new cycle.
                 </p>
-                <button
-                  onClick={() => setShowAddForm(true)}
-                  className="mt-4 text-[#F8C8D1] font-bold text-sm hover:underline"
-                >
-                  Log Period Now
-                </button>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Right Column: Calendar */}
+        <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col items-center flex-1">
+            <div className="w-full flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-[#2C3E50] font-serif">Your Calendar</h2>
+              {/* Privacy Toggle for Fertility */}
+              <label className="flex items-center gap-3 cursor-pointer group">
+                <span className="text-sm font-bold text-gray-500 group-hover:text-[#2C3E50] transition-colors">Show Fertility Window</span>
+                <div className="relative">
+                  <input 
+                    type="checkbox" 
+                    className="sr-only" 
+                    checked={showFertility}
+                    onChange={() => setShowFertility(!showFertility)}
+                  />
+                  <div className={`block w-10 h-6 rounded-full transition-colors ${showFertility ? 'bg-[#6A5ACD]' : 'bg-gray-200'}`}></div>
+                  <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${showFertility ? 'translate-x-4' : ''}`}></div>
+                </div>
+              </label>
+            </div>
+
+            <style>{`
+              .rdp { --rdp-cell-size: 40px; margin: 0; }
+              .rdp-day_selected { background-color: transparent !important; }
+            `}</style>
+            <DayPicker
+              mode="single"
+              onDayClick={handleDayClick}
+              modifiers={modifiers}
+              modifiersStyles={modifiersStyles}
+              className="bg-white"
+            />
+
+            {/* Legend */}
+            <div className="w-full mt-auto pt-6 border-t border-gray-100 grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-[#F8C8D1]" /> Logged Period
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
+                <div className="w-3 h-3 rounded-full bg-[#FDF1F3] border border-dashed border-[#F8C8D1]" /> Predicted
+              </div>
+              {showFertility && (
+                <div className="flex items-center gap-2 text-xs font-bold text-gray-500">
+                  <div className="w-3 h-3 rounded-full bg-[#E6E6FA]" /> Fertile Window
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
