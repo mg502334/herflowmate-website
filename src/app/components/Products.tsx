@@ -52,10 +52,10 @@ export function Products() {
               letterSpacing: "-0.01em",
             }}
           >
-            Purchase Essentials Individually
+            Shop Individual Brands
           </h2>
           <p className="text-xs text-gray-500 max-w-md">
-            Prefer not to subscribe? Get our premium cotton pads, applicator tampons, or reusable cups on demand.
+            Prefer not to subscribe? Stock up on your favorite specific brands and products directly from our A La Carte shop.
           </p>
         </div>
 
