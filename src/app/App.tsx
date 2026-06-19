@@ -38,6 +38,7 @@ import { AccountLayout } from "./pages/account/AccountLayout";
 import { AccountDashboard } from "./pages/account/AccountDashboard";
 import { Subscriptions } from "./pages/account/Subscriptions";
 import { PeriodTracker } from "./pages/account/PeriodTracker";
+import { AccountDetails } from "./pages/account/AccountDetails";
 
 export default function App() {
   const location = useLocation();
@@ -83,6 +84,7 @@ export default function App() {
             <Route path="/account" element={<CustomerProtectedRoute />}>
               <Route element={<AccountLayout />}>
                 <Route index element={<AccountDashboard />} />
+                <Route path="details" element={<AccountDetails />} />
                 <Route path="subscriptions" element={<Subscriptions />} />
                 <Route path="tracker" element={<PeriodTracker />} />
               </Route>

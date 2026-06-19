@@ -51,6 +51,11 @@ CREATE TABLE public.profiles (
   id uuid REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
   first_name text,
   last_name text,
+  phone text,
+  shipping_street text,
+  shipping_city text,
+  shipping_state text,
+  shipping_zip text,
   created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 

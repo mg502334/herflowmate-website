@@ -1,6 +1,6 @@
 import { Outlet, Link, useNavigate, useLocation } from 'react-router';
 import { supabase } from '../../../lib/supabase';
-import { CalendarHeart, LayoutDashboard, LogOut, Package } from 'lucide-react';
+import { CalendarHeart, LayoutDashboard, LogOut, Package, User } from 'lucide-react';
 
 export function AccountLayout() {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ export function AccountLayout() {
 
   const navItems = [
     { name: 'Dashboard', path: '/account', icon: LayoutDashboard },
+    { name: 'Account Details', path: '/account/details', icon: User },
     { name: 'Subscriptions', path: '/account/subscriptions', icon: Package },
     { name: 'Flow Companion', path: '/account/tracker', icon: CalendarHeart },
   ];
