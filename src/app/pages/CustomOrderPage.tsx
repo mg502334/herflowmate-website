@@ -124,7 +124,6 @@ export function CustomOrderPage() {
                       >
                         <h3 className="font-bold text-lg text-[#2C3E50]">{tier.name}</h3>
                         <div className="text-2xl font-bold mt-2">${tier.price}</div>
-                        <div className="text-xs text-gray-500 mt-2">Allocates ${tier.budget - tier.shipping} for products</div>
                       </div>
                     ))}
                   </div>
