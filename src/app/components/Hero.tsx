@@ -62,7 +62,7 @@ export function Hero() {
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white bg-gradient-to-r from-[#F8C8D1] to-[#F3A5B8] hover:opacity-90 transition-all duration-200 shadow-lg shadow-[#F8C8D1]/20 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <Package size={16} />
-              Order your custom box today
+              Custom Order
             </Link>
             <button
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold bg-white text-[#2C3E50] hover:bg-[#FAFAFA] transition-all duration-200 border border-[#2C3E50]/15 shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
