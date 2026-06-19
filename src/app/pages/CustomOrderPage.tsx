@@ -194,7 +194,6 @@ export function CustomOrderPage() {
                           className={`py-4 px-2 flex flex-col items-center gap-1 rounded-xl border-2 text-sm font-bold transition-all ${product === p ? 'border-[#F8C8D1] bg-[#FDF1F3] text-[#2C3E50]' : 'border-gray-100 text-gray-500 hover:border-gray-300'}`}
                         >
                           <span>{p}</span>
-                          <span className="text-[10px] text-gray-400">${productTypes[p as keyof typeof productTypes].toFixed(2)}/ea</span>
                         </button>
                       );
                     })}
@@ -229,7 +228,7 @@ export function CustomOrderPage() {
                   <div className="flex items-center justify-between p-6 bg-gray-50 rounded-2xl border border-gray-100">
                     <div>
                       <div className="font-bold text-[#2C3E50]">{brand} {product}</div>
-                      <div className="text-xs text-gray-500">{flow && `${flow} flow • `} ${currentItemPrice.toFixed(2)}/ea</div>
+                      {flow && <div className="text-xs text-gray-500">{flow} flow</div>}
                     </div>
                     <div className="flex items-center gap-4">
                       <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-8 h-8 rounded-full bg-white border flex items-center justify-center shadow-sm">-</button>
@@ -245,7 +244,7 @@ export function CustomOrderPage() {
                     className="w-full py-4 bg-[#2C3E50] text-white rounded-xl font-bold flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     <Plus size={18} />
-                    Add to Box (${(currentItemPrice * qty).toFixed(2)})
+                    Add to Box
                   </button>
                   {currentItemPrice * qty > remainingBudget && (
                     <div className="text-xs text-red-500 flex items-center gap-1 justify-center">
@@ -328,8 +327,8 @@ export function CustomOrderPage() {
                 {/* Progress Bar / Budget Tracker */}
                 <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
                   <div className="flex justify-between text-xs font-bold mb-2">
-                    <span className="text-gray-300">Retail Value</span>
-                    <span className="text-white">${currentRetailValue.toFixed(2)} / ${(boxType.budget - boxType.shipping).toFixed(2)}</span>
+                    <span className="text-gray-300">Box Capacity</span>
+                    <span className="text-white">{Math.round((currentRetailValue / (boxType.budget - boxType.shipping)) * 100)}% Full</span>
                   </div>
                   <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
                     <motion.div 
@@ -337,10 +336,6 @@ export function CustomOrderPage() {
                       initial={{ width: 0 }}
                       animate={{ width: `${(currentRetailValue / (boxType.budget - boxType.shipping)) * 100}%` }}
                     />
-                  </div>
-                  <div className="text-[10px] text-gray-400 mt-2 flex justify-between">
-                    <span>Est. Shipping: ${boxType.shipping.toFixed(2)}</span>
-                    <span className="text-[#F8C8D1]">Remaining: ${remainingBudget.toFixed(2)}</span>
                   </div>
                 </div>
 
