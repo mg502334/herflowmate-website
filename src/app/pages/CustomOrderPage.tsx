@@ -14,108 +14,108 @@ const brandsCatalog = [
     brand: "Always",
     category: "Conventional",
     sublines: [
-      { name: "Radiant", products: ["Pads", "Pantyliners"] },
-      { name: "Infinity", products: ["Pads"] },
-      { name: "Teen", products: ["Pads"] },
-      { name: "Ultra Thin", products: ["Pads", "Pantyliners"] },
-      { name: "Maxi", products: ["Pads"] },
-      { name: "Pure Cotton", products: ["Pads"] },
-      { name: "ZZZ", products: ["Period Underwear"] }
+      { name: "Radiant", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Infinity", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Teen", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Ultra Thin", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Maxi", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Pure Cotton", products: ["Pads"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" },
+      { name: "ZZZ", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Tampax",
     category: "Conventional",
     sublines: [
-      { name: "Pearl", products: ["Tampons"] },
-      { name: "Radiant", products: ["Tampons"] },
-      { name: "Pure Cotton", products: ["Tampons"] }
+      { name: "Pearl", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
+      { name: "Radiant", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
+      { name: "Pure Cotton", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "U by Kotex",
     category: "Conventional",
     sublines: [
-      { name: "CleanWear", products: ["Pads"] },
-      { name: "Security", products: ["Pads", "Tampons"] },
-      { name: "Click", products: ["Tampons"] },
-      { name: "Balance", products: ["Pads", "Pantyliners"] }
+      { name: "CleanWear", products: ["Pads"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" },
+      { name: "Security", products: ["Pads", "Tampons"], image: "https://images.unsplash.com/photo-1622285141249-16a815a5fbc4?w=200&h=200&fit=crop" },
+      { name: "Click", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
+      { name: "Balance", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1620608552171-8b01bbbb2d34?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Playtex",
     category: "Conventional",
     sublines: [
-      { name: "Sport", products: ["Tampons"] },
-      { name: "Clean Comfort", products: ["Tampons"] },
-      { name: "Simply Glide", products: ["Tampons"] }
+      { name: "Sport", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
+      { name: "Clean Comfort", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" },
+      { name: "Simply Glide", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "L.",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton", products: ["Pads", "Pantyliners", "Tampons"] }
+      { name: "Organic Cotton", products: ["Pads", "Pantyliners", "Tampons"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Rael",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton Cover", products: ["Pads", "Pantyliners"] },
-      { name: "Organic Cotton Core", products: ["Tampons"] }
+      { name: "Organic Cotton Cover", products: ["Pads", "Pantyliners"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" },
+      { name: "Organic Cotton Core", products: ["Tampons"], image: "https://images.unsplash.com/photo-1620608552192-3bc82c0b0292?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Cora",
     category: "Organic/Natural",
     sublines: [
-      { name: "Organic Cotton", products: ["Pads", "Tampons"] }
+      { name: "Organic Cotton", products: ["Pads", "Tampons"], image: "https://images.unsplash.com/photo-1584305586616-24e58a9e7015?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "DivaCup",
     category: "Cups/Discs",
     sublines: [
-      { name: "Model 0", products: ["Menstrual Cup"] },
-      { name: "Model 1", products: ["Menstrual Cup"] },
-      { name: "Model 2", products: ["Menstrual Cup"] }
+      { name: "Model 0", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Model 1", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Model 2", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Saalt",
     category: "Cups/Discs",
     sublines: [
-      { name: "Teen Cup", products: ["Menstrual Cup"] },
-      { name: "Soft Cup", products: ["Menstrual Cup"] },
-      { name: "Regular Cup", products: ["Menstrual Cup"] },
-      { name: "Disc", products: ["Disc"] }
+      { name: "Teen Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Soft Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Regular Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Disc", products: ["Disc"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Flex",
     category: "Cups/Discs",
     sublines: [
-      { name: "Flex Disc", products: ["Disc"] },
-      { name: "Flex Cup", products: ["Menstrual Cup"] }
+      { name: "Flex Disc", products: ["Disc"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" },
+      { name: "Flex Cup", products: ["Menstrual Cup"], image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Thinx",
     category: "Period Underwear",
     sublines: [
-      { name: "Hiphugger", products: ["Period Underwear"] },
-      { name: "Boyshort", products: ["Period Underwear"] },
-      { name: "Brief", products: ["Period Underwear"] }
+      { name: "Hiphugger", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
+      { name: "Boyshort", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
+      { name: "Brief", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
     ]
   },
   {
     brand: "Knix",
     category: "Period Underwear",
     sublines: [
-      { name: "Bikini", products: ["Period Underwear"] },
-      { name: "Thong", products: ["Period Underwear"] },
-      { name: "Boyshort", products: ["Period Underwear"] }
+      { name: "Bikini", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
+      { name: "Thong", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" },
+      { name: "Boyshort", products: ["Period Underwear"], image: "https://images.unsplash.com/photo-1588628566587-bf5ba452bb11?w=200&h=200&fit=crop" }
     ]
   }
 ];
@@ -176,14 +176,14 @@ export function CustomOrderPage() {
       // Add each flow as a separate line item
       for (const [f, qty] of Object.entries(flowQuantities)) {
         if (qty > 0) {
-          newItems.push({ id: Date.now() + Math.random(), category, brand, subline, product, flow: f, qty, price: currentItemPrice });
+          newItems.push({ id: Date.now() + Math.random(), category, brand, subline, product, flow: f, qty, price: currentItemPrice, image: currentSublineData?.image });
         }
       }
     } else {
       // Non-flow based (Underwear, Cups)
       const qty = flowQuantities["Standard"] || 0;
       if (qty > 0) {
-        newItems.push({ id: Date.now() + Math.random(), category, brand, subline, product, flow: "", qty, price: currentItemPrice });
+        newItems.push({ id: Date.now() + Math.random(), category, brand, subline, product, flow: "", qty, price: currentItemPrice, image: currentSublineData?.image });
       }
     }
 
@@ -430,7 +430,16 @@ export function CustomOrderPage() {
                         {items.map((item) => (
                           <div key={item.id} className="flex items-center justify-between p-4 bg-white border rounded-xl shadow-sm">
                             <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-[#FDF1F3] rounded-full flex items-center justify-center text-[10px] text-[#F8C8D1] font-bold">x{item.qty}</div>
+                              {item.image ? (
+                                <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                                  <img src={item.image} alt={item.product} className="w-full h-full object-cover" />
+                                  <div className="absolute top-0 left-0 w-full h-full bg-black/40 flex items-center justify-center">
+                                    <span className="text-white text-[10px] font-bold">x{item.qty}</span>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="w-10 h-10 bg-[#FDF1F3] rounded-full flex items-center justify-center text-xs text-[#F8C8D1] font-bold">x{item.qty}</div>
+                              )}
                               <div>
                                 <div className="text-sm font-bold text-[#2C3E50]">{item.brand} {item.subline} {item.product}</div>
                                 {item.flow && <div className="text-[10px] text-gray-400 uppercase tracking-wider">{item.flow} Flow</div>}
