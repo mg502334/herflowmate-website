@@ -194,7 +194,7 @@ export function CustomOrderPage() {
     setSubline("");
     setProduct("");
     setFlowQuantities({});
-    setStep(2); // Go back to brand selection to add more
+    setStep(5); // Go straight to review to see the added item
   };
 
   const handleRemoveItem = (id: number) => {
@@ -440,6 +440,14 @@ export function CustomOrderPage() {
                       </div>
                     )}
                   </div>
+
+                  <button 
+                    onClick={() => setStep(2)}
+                    className="w-full py-4 mt-4 bg-white border-2 border-gray-200 text-[#2C3E50] rounded-xl font-bold flex items-center justify-center gap-2 hover:border-[#F8C8D1] transition-all"
+                  >
+                    <Plus size={18} />
+                    Add More Items to Box
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -454,23 +462,33 @@ export function CustomOrderPage() {
                 <ArrowLeft size={16} /> Back
               </button>
               
-              {step < 5 ? (
-                <button 
-                  onClick={handleNext} 
-                  disabled={(step === 2 && !brand) || (step === 3 && !product)}
-                  className="px-8 py-3 rounded-full text-sm font-bold bg-[#F8C8D1] text-[#2C3E50] hover:bg-[#FDF1F3] shadow-md shadow-[#F8C8D1]/20 disabled:opacity-50 disabled:shadow-none flex items-center gap-2 transition-all"
-                >
-                  Next <ArrowRight size={16} />
-                </button>
-              ) : (
-                <button 
-                  onClick={handleAddBoxToCart}
-                  disabled={items.length === 0}
-                  className="px-8 py-3 rounded-full text-sm font-bold bg-gradient-to-r from-[#F8C8D1] to-[#F3A5B8] text-white shadow-lg shadow-[#F8C8D1]/30 disabled:opacity-50 flex items-center gap-2 transition-all"
-                >
-                  Complete Box <Check size={16} />
-                </button>
-              )}
+              <div className="flex gap-4">
+                {items.length > 0 && step < 5 && (
+                  <button 
+                    onClick={() => setStep(5)}
+                    className="px-6 py-3 rounded-full text-sm font-bold text-[#2C3E50] bg-gray-100 hover:bg-gray-200 transition-all"
+                  >
+                    Review Box
+                  </button>
+                )}
+                {step < 5 ? (
+                  <button 
+                    onClick={handleNext} 
+                    disabled={(step === 2 && !brand) || (step === 3 && !product)}
+                    className="px-8 py-3 rounded-full text-sm font-bold bg-[#F8C8D1] text-[#2C3E50] hover:bg-[#FDF1F3] shadow-md shadow-[#F8C8D1]/20 disabled:opacity-50 disabled:shadow-none flex items-center gap-2 transition-all"
+                  >
+                    Next <ArrowRight size={16} />
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handleAddBoxToCart}
+                    disabled={items.length === 0}
+                    className="px-8 py-3 rounded-full text-sm font-bold bg-gradient-to-r from-[#F8C8D1] to-[#F3A5B8] text-white shadow-lg shadow-[#F8C8D1]/30 disabled:opacity-50 flex items-center gap-2 transition-all"
+                  >
+                    Complete Box <Check size={16} />
+                  </button>
+                )}
+              </div>
             </div>
           </div>
 
