@@ -23,7 +23,28 @@ export function CartDrawer() {
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const subscriptionDiscount = cart.some((i) => i.isSubscription) ? Math.round(subtotal * 0.15) : 0;
-  const shipping = subtotal === 0 ? 0 : 5.99; // Standard flat fee based on Dropship estimates
+  const calculateShipping = () => {
+    if (subtotal === 0) return 0;
+    
+    let totalShipping = 0;
+    const customBoxes = cart.filter(item => item.shippingCost !== undefined && item.id !== "free-bag");
+    const regularItems = cart.filter(item => item.shippingCost === undefined && item.id !== "free-bag");
+
+    // Add specific shipping costs for boxes (e.g., $4 per Basic Box)
+    customBoxes.forEach(box => {
+      totalShipping += (box.shippingCost! * box.quantity);
+    });
+
+    // If they have regular items but no boxes, charge flat $5.99
+    // If they DO have boxes, the regular items ship inside the box for free!
+    if (regularItems.length > 0 && customBoxes.length === 0) {
+      totalShipping += 5.99;
+    }
+
+    return totalShipping;
+  };
+
+  const shipping = calculateShipping();
   const total = subtotal - subscriptionDiscount + shipping;
 
   const handleCheckout = async () => {

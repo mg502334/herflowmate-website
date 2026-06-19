@@ -212,6 +212,7 @@ export function CustomOrderPage() {
       image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=600&h=700&fit=crop&auto=format",
       isSubscription: billing === "monthly",
       frequency: billing === "monthly" ? "4 weeks" : undefined,
+      shippingCost: boxType.shipping,
     });
     // AddToCart automatically opens the cart drawer, so we don't need to do anything else here.
   };

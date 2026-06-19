@@ -9,6 +9,7 @@ export interface CartItem {
   image: string;
   isSubscription?: boolean;
   frequency?: string; // '4 weeks' | '6 weeks' | '8 weeks'
+  shippingCost?: number;
 }
 
 interface CartContextType {
