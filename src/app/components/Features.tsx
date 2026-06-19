@@ -3,23 +3,23 @@ import { Leaf, Heart, Package, ShieldCheck, Recycle, Zap } from "lucide-react";
 const features = [
   {
     icon: Leaf,
-    title: "100% Premium Quality",
-    desc: "Premium quality materials chosen for maximum comfort and reliability. Safe, clean, and gentle.",
+    title: "Trusted Name Brands",
+    desc: "We curate from the best, most reliable brands you already know and trust. From conventional to organic options.",
   },
   {
     icon: Heart,
-    title: "OB-GYN Designed",
-    desc: "Engineered in partnership with leading OB-GYNs to fit your anatomy naturally. Zero compromises on leak protection.",
+    title: "Fully Customizable",
+    desc: "Build your perfect box from scratch. Mix and match formats, brands, and flow intensities to fit your exact needs.",
   },
   {
     icon: Recycle,
-    title: "Zero-Plastic Packaging",
-    desc: "Biodegradable wrapping, recycled cardboard, and zero single-use plastics. Kind to your body, gentle on the Earth.",
+    title: "Never Run Out",
+    desc: "Set it and forget it with our flexible subscriptions. Your custom period care arrives exactly when you need it.",
   },
   {
     icon: ShieldCheck,
-    title: "Hypoallergenic Certified",
-    desc: "Free from synthetic fragrances, chlorine bleach, toxins, or dyes. Formulated specifically for highly sensitive skin.",
+    title: "For Every Body",
+    desc: "Whether you prefer pads, tampons, cups, or period underwear, we've got you covered with a massive selection.",
   },
   {
     icon: Package,
