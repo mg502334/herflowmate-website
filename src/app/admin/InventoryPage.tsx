@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { Search, Plus, Minus, PackageX, DollarSign } from "lucide-react";
+import { Search, Plus, Minus, PackageX, DollarSign, Trash2, ArchiveRestore } from "lucide-react";
 import { AddProductModal } from "./AddProductModal";
 import { useProducts } from "../data/useProducts";
 import { Product } from "../data/products";
 import { useAdminAuth } from "./AdminAuthContext";
 import { RequestPriceModal } from "./RequestPriceModal";
 import { RecipeBuilderModal } from "./RecipeBuilderModal";
+import { DeleteProductModal } from "./DeleteProductModal";
 
 export function InventoryPage() {
-  const { products, loading, error, updateStock, addProduct } = useProducts();
+  const { products, archivedProducts, loading, error, updateStock, addProduct, deleteProduct, unarchiveProduct } = useProducts();
   const { role } = useAdminAuth();
   const [searchQuery, setSearchQuery] = useState("");
+  const [showArchived, setShowArchived] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
   const [isRecipeModalOpen, setIsRecipeModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
   const handleAddProduct = async (newProduct: Product) => {
     try {
@@ -35,7 +39,13 @@ export function InventoryPage() {
     setIsRecipeModalOpen(true);
   };
 
-  const filteredProducts = products.filter(p => 
+  const handleDeleteClick = (product: Product) => {
+    setProductToDelete(product);
+    setIsDeleteModalOpen(true);
+  };
+
+  const currentList = showArchived ? archivedProducts : products;
+  const filteredProducts = currentList.filter(p => 
     p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     (p.sku && p.sku.toLowerCase().includes(searchQuery.toLowerCase()))
   );
@@ -53,6 +63,15 @@ export function InventoryPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Inventory Management</h1>
         <div className="flex items-center space-x-4">
+          <label className="flex items-center space-x-2 text-sm text-gray-400 cursor-pointer hover:text-white transition-colors">
+            <input 
+              type="checkbox" 
+              className="rounded bg-gray-800 border-gray-700 text-[#38BDF8] focus:ring-[#38BDF8]"
+              checked={showArchived}
+              onChange={(e) => setShowArchived(e.target.checked)}
+            />
+            <span>Show Archived</span>
+          </label>
           <div className="relative">
             <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input 
@@ -95,6 +114,15 @@ export function InventoryPage() {
             product={selectedProduct}
           />
         </>
+      )}
+
+      {productToDelete && (
+        <DeleteProductModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          product={productToDelete}
+          onConfirm={deleteProduct}
+        />
       )}
 
       <div className="bg-[#1E293B] rounded-xl border border-gray-800 overflow-hidden shadow-xl">
@@ -187,6 +215,25 @@ export function InventoryPage() {
                       >
                         <Plus className="w-4 h-4" />
                       </button>
+                      {role === 'admin' && (
+                        showArchived ? (
+                          <button 
+                            onClick={() => unarchiveProduct(product.id)}
+                            className="p-1.5 rounded-md hover:bg-emerald-500/20 text-gray-400 hover:text-emerald-400 transition-colors ml-2"
+                            title="Restore Product"
+                          >
+                            <ArchiveRestore className="w-4 h-4" />
+                          </button>
+                        ) : (
+                          <button 
+                            onClick={() => handleDeleteClick(product)}
+                            className="p-1.5 rounded-md hover:bg-red-500/20 text-gray-400 hover:text-red-400 transition-colors ml-2"
+                            title="Archive Product"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )
+                      )}
                     </div>
                   </td>
                 </tr>

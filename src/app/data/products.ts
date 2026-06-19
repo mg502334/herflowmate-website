@@ -19,6 +19,7 @@ export type Product = {
   packagingCost: number;
   isStandalone?: boolean;
   isCustomBox?: boolean;
+  isDeleted?: boolean;
 };
 
 export const products: Product[] = [

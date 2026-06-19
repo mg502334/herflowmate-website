@@ -21,7 +21,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { orderId, customerName } = req.body;
+    const { orderId, customerName, labelFormat } = req.body;
 
     // 1. Create a Shipment using the Shippo REST API directly
     const shipmentResponse = await fetch("https://api.goshippo.com/shipments/", {
@@ -88,7 +88,7 @@ export default async function handler(req: any, res: any) {
       },
       body: JSON.stringify({
         rate: cheapestRateId,
-        label_file_type: "PDF",
+        label_file_type: labelFormat || "PDF",
         async: false
       })
     });

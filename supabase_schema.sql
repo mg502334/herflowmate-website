@@ -17,7 +17,8 @@ CREATE TABLE public.products (
   stock integer NOT NULL DEFAULT 0,
   manufacturing_cost numeric(10,2) NOT NULL DEFAULT 0,
   shipping_cost numeric(10,2) NOT NULL DEFAULT 0,
-  packaging_cost numeric(10,2) NOT NULL DEFAULT 0
+  packaging_cost numeric(10,2) NOT NULL DEFAULT 0,
+  is_deleted boolean DEFAULT false
 );
 
 -- Set up Row Level Security (RLS)
@@ -108,3 +109,139 @@ CREATE POLICY "Allow webhook insert subscriptions" ON public.subscriptions
 CREATE POLICY "Allow webhook update subscriptions" ON public.subscriptions
   FOR UPDATE USING (true);
 
+-- Create store_settings table
+CREATE TABLE public.store_settings (
+  id integer PRIMARY KEY DEFAULT 1 CHECK (id = 1), -- Ensure only one row
+  business_logo_url text,
+  updated_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+ALTER TABLE public.store_settings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public read settings" ON public.store_settings FOR SELECT USING (true);
+CREATE POLICY "Allow anon update settings" ON public.store_settings FOR UPDATE USING (true);
+CREATE POLICY "Allow anon insert settings" ON public.store_settings FOR INSERT WITH CHECK (true);
+
+-- Insert default row
+INSERT INTO public.store_settings (id) VALUES (1);
+
+-- Note: To enable Storage for public-assets, run the following via Supabase SQL Editor:
+-- INSERT INTO storage.buckets (id, name, public) VALUES ('public-assets', 'public-assets', true);
+-- CREATE POLICY "Public Access" ON storage.objects FOR SELECT USING (bucket_id = 'public-assets');
+-- CREATE POLICY "Auth Insert" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'public-assets');
+-- CREATE POLICY "Auth Update" ON storage.objects FOR UPDATE USING (bucket_id = 'public-assets');
+
+-- Create the orders table
+CREATE TABLE public.orders (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  display_id text UNIQUE NOT NULL,
+  user_id uuid REFERENCES auth.users ON DELETE SET NULL,
+  customer_name text NOT NULL,
+  status text NOT NULL,
+  method text,
+  items_count integer DEFAULT 0,
+  total numeric(10,2) DEFAULT 0.00,
+  tracking text,
+  line_items jsonb DEFAULT '[]'::jsonb,
+  picked_by text,
+  inspected_by text,
+  shipped_by text,
+  shipped_date date,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Enable RLS
+ALTER TABLE public.orders ENABLE ROW LEVEL SECURITY;
+
+-- Allow users to read their own orders
+CREATE POLICY "Users can view own orders" ON public.orders
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Allow users to update their own orders (e.g. to cancel them)
+CREATE POLICY "Users can update own orders" ON public.orders
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- Allow public read/update/insert to orders (for admin prototype)
+CREATE POLICY "Allow public all on orders" ON public.orders
+  FOR ALL USING (true) WITH CHECK (true);
+
+-- Insert the mock data to keep the dashboard populated
+INSERT INTO public.orders (display_id, customer_name, status, method, items_count, total, line_items, created_at, shipped_date, tracking, picked_by, inspected_by, shipped_by)
+VALUES 
+('ORD-1045', 'Sarah Jenkins', 'Awaiting Pick', 'USPS Priority', 2, 57.00, '[{"name": "The Harmony Kit", "qty": 1, "price": 45.00}, {"name": "Overnight Pads", "qty": 1, "price": 12.00}]', '2026-06-10T00:00:00Z', NULL, NULL, NULL, NULL, NULL),
+('ORD-1044', 'Emily Chen', 'Awaiting Shipping', 'UPS Ground', 1, 8.00, '[{"name": "Everyday Liners", "qty": 1, "price": 8.00}]', '2026-06-09T00:00:00Z', NULL, NULL, 'Alex', 'Sam', NULL),
+('ORD-1043', 'Jessica Martinez', 'Shipped', 'USPS First Class', 3, 28.00, '[{"name": "Super Tampons", "qty": 2, "price": 9.00}, {"name": "Regular Pads", "qty": 1, "price": 10.00}]', '2026-06-08T00:00:00Z', '2026-06-09', '9400100000000000000000', 'Taylor', 'Alex', 'Sam');
+
+-- Add report_settings column to store_settings
+ALTER TABLE public.store_settings ADD COLUMN IF NOT EXISTS report_settings jsonb DEFAULT '{}'::jsonb;
+
+-- SYSTEM SECURITY LOCKDOWN SCRIPT
+-- This script hardens your database by implementing Role-Based Access Control (RBAC)
+
+-- 1. Ensure profiles has the correct columns
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS role text DEFAULT 'customer';
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS revoked_at timestamp with time zone;
+
+-- 2. Create Security Definer functions to prevent infinite recursion
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM public.profiles
+    WHERE id = auth.uid() AND role = 'admin'
+  );
+$$;
+
+CREATE OR REPLACE FUNCTION public.is_staff()
+RETURNS boolean
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1 FROM public.profiles
+    WHERE id = auth.uid() AND role IN ('admin', 'staff')
+  );
+$$;
+
+-- 3. Lock Down Orders Table (Financial Data)
+DROP POLICY IF EXISTS "Allow public all on orders" ON public.orders;
+
+CREATE POLICY "Admins and Staff can view all orders" ON public.orders
+  FOR SELECT USING ( public.is_staff() );
+
+CREATE POLICY "Admins and Staff can modify all orders" ON public.orders
+  FOR ALL USING ( public.is_staff() ) WITH CHECK ( public.is_staff() );
+
+-- 4. Lock Down Products Table (Store Assets)
+DROP POLICY IF EXISTS "Allow anon insert" ON public.products;
+DROP POLICY IF EXISTS "Allow anon update" ON public.products;
+DROP POLICY IF EXISTS "Allow anon delete" ON public.products;
+
+CREATE POLICY "Admins can insert products" ON public.products
+  FOR INSERT WITH CHECK ( public.is_admin() );
+
+CREATE POLICY "Admins can update products" ON public.products
+  FOR UPDATE USING ( public.is_admin() );
+
+CREATE POLICY "Admins can delete products" ON public.products
+  FOR DELETE USING ( public.is_admin() );
+
+-- 5. Lock Down Store Settings Table (Operations)
+DROP POLICY IF EXISTS "Allow anon update settings" ON public.store_settings;
+DROP POLICY IF EXISTS "Allow anon insert settings" ON public.store_settings;
+
+CREATE POLICY "Admins can update settings" ON public.store_settings
+  FOR UPDATE USING ( public.is_admin() );
+
+CREATE POLICY "Admins can insert settings" ON public.store_settings
+  FOR INSERT WITH CHECK ( public.is_admin() );
+
+-- 6. Lock Down Profiles Table (User Management)
+CREATE POLICY "Admins can view all profiles" ON public.profiles
+  FOR SELECT USING ( public.is_admin() );
+
+CREATE POLICY "Admins can update all profiles" ON public.profiles
+  FOR UPDATE USING ( public.is_admin() );

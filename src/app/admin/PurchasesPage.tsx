@@ -12,6 +12,7 @@ export function PurchasesPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // Form State
+  const [skuScan, setSkuScan] = useState("");
   const [selectedProductId, setSelectedProductId] = useState("");
   const [boxesPurchased, setBoxesPurchased] = useState("");
   const [itemsPerBox, setItemsPerBox] = useState("");
@@ -49,6 +50,7 @@ export function PurchasesPage() {
       );
       
       // Reset form
+      setSkuScan("");
       setBoxesPurchased("");
       setItemsPerBox("");
       setTotalCost("");
@@ -65,6 +67,65 @@ export function PurchasesPage() {
 
   // Only show individual/raw items in the dropdown, not pre-fab kits (which are built from components)
   const buyableProducts = products.filter(p => !p.isCustomBox && p.isStandalone !== false);
+
+  const handleSkuScan = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setSkuScan(val);
+    
+    // Auto-select product if SKU matches
+    if (val.trim()) {
+      const matchedProduct = buyableProducts.find(
+        p => p.sku?.toLowerCase() === val.toLowerCase() || p.id.toString() === val
+      );
+      if (matchedProduct) {
+        setSelectedProductId(matchedProduct.id.toString());
+      }
+    }
+  };
+
+  // Global Barcode Scanner Listener
+  useEffect(() => {
+    let buffer = '';
+    let lastKeyTime = Date.now();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const currentTime = Date.now();
+      
+      // If time between keystrokes is more than 50ms, it's likely human typing, not a scanner
+      if (currentTime - lastKeyTime > 50) {
+        buffer = '';
+      }
+      
+      if (e.key.length === 1) {
+        buffer += e.key;
+      }
+
+      // Barcode scanners usually send an 'Enter' key at the end
+      if (e.key === 'Enter' && buffer.length > 2) {
+        // If we are currently focused on an input that isn't the body, we might not want to intercept,
+        // BUT barcode typing is so fast that it's safe to assume it's a scan.
+        
+        const matchedProduct = buyableProducts.find(
+          p => p.sku?.toLowerCase() === buffer.toLowerCase() || p.id.toString() === buffer
+        );
+        
+        if (matchedProduct) {
+          setSkuScan(buffer);
+          setSelectedProductId(matchedProduct.id.toString());
+          // Optional: blur whatever was focused so it doesn't submit a form if they were in a text field
+          if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+          }
+        }
+        buffer = '';
+      }
+      
+      lastKeyTime = currentTime;
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [buyableProducts]);
 
   if (loading && purchases.length === 0) {
     return <div className="p-10 text-center text-gray-400">Loading purchasing data...</div>;
@@ -88,6 +149,17 @@ export function PurchasesPage() {
           </h2>
           
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="bg-[#0F172A]/50 p-3 rounded-lg border border-[#38BDF8]/20">
+              <label className="block text-xs font-bold text-[#38BDF8] mb-1 uppercase tracking-wider">Quick Scan Barcode</label>
+              <input
+                type="text"
+                value={skuScan}
+                onChange={handleSkuScan}
+                className="w-full bg-black/20 border border-gray-700 text-[#38BDF8] rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#38BDF8] focus:outline-none font-mono"
+                placeholder="Scan or type SKU here..."
+              />
+            </div>
+
             <div>
               <div className="flex justify-between items-center mb-1">
                 <label className="block text-sm font-medium text-gray-400">Item Purchased</label>

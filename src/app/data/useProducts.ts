@@ -4,6 +4,7 @@ import { Product } from './products'; // Keeping the Product type definition
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [archivedProducts, setArchivedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,9 +39,11 @@ export function useProducts() {
           shippingCost: Number(item.shipping_cost),
           packagingCost: Number(item.packaging_cost),
           isStandalone: item.is_standalone,
-          isCustomBox: item.is_custom_box
+          isCustomBox: item.is_custom_box,
+          isDeleted: item.is_deleted
         }));
-        setProducts(mappedProducts);
+        setProducts(mappedProducts.filter(p => !p.isDeleted));
+        setArchivedProducts(mappedProducts.filter(p => p.isDeleted));
       }
     } catch (err: any) {
       console.error('Error fetching products:', err);
@@ -263,12 +266,46 @@ export function useProducts() {
     if (error) throw error;
   };
 
+  const deleteProduct = async (productId: number) => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .update({ is_deleted: true })
+        .eq('id', productId);
+      
+      if (error) throw error;
+      
+      await fetchProducts();
+    } catch (err) {
+      console.error('Error archiving product:', err);
+      throw err;
+    }
+  };
+
+  const unarchiveProduct = async (productId: number) => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .update({ is_deleted: false })
+        .eq('id', productId);
+      
+      if (error) throw error;
+      
+      await fetchProducts();
+    } catch (err) {
+      console.error('Error unarchiving product:', err);
+      throw err;
+    }
+  };
+
   return { 
     products, 
+    archivedProducts,
     loading, 
     error, 
     updateStock, 
-    addProduct, 
+    addProduct,
+    deleteProduct,
     requestPriceChange, 
     fetchPriceRequests,
     approvePriceRequest,

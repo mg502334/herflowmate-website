@@ -1,12 +1,14 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router";
-import { LayoutDashboard, Package, DollarSign, LogOut, ArrowLeft, ClipboardList, Truck, Inbox, Target } from "lucide-react";
+import { LayoutDashboard, Package, DollarSign, LogOut, ArrowLeft, ClipboardList, Truck, Inbox, Target, Settings, TrendingUp } from "lucide-react";
 import { useAdminAuth } from "./AdminAuthContext";
+import { useStoreSettings } from "../data/useStoreSettings";
 import logoWhite from "../../assets/herflowmate-logo-white.png";
 
 export function AdminLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, role } = useAdminAuth();
+  const { settings } = useStoreSettings();
 
   const handleLogout = () => {
     logout();
@@ -19,12 +21,14 @@ export function AdminLayout() {
     { name: "Shipments", path: "/admin/shipments", icon: Package },
     { name: "Inventory", path: "/admin/inventory", icon: ClipboardList },
     { name: "Inbox", path: "/admin/inbox", icon: Inbox },
+    { name: "Analytics", path: "/admin/analytics", icon: TrendingUp },
   ];
 
   if (role === 'admin') {
     navItems.push({ name: "Price Breakdown", path: "/admin/prices", icon: DollarSign });
     navItems.push({ name: "Price Requests", path: "/admin/price-requests", icon: ClipboardList });
     navItems.push({ name: "Pricing Strategy", path: "/admin/pricing-strategy", icon: Target });
+    navItems.push({ name: "Settings", path: "/admin/settings", icon: Settings });
   }
 
   return (
@@ -35,9 +39,13 @@ export function AdminLayout() {
           <Link to="/" className="flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" /> Back to Store
           </Link>
-          <div className="flex items-end gap-2">
-            <img src={logoWhite} alt="HerFlowMate" className="h-8 w-auto object-contain" />
-            <span className="text-xl font-bold tracking-tight text-[#38BDF8] mb-0.5">Admin</span>
+          <div className="flex flex-col items-start gap-3">
+            <img 
+              src={settings?.business_logo_url || logoWhite} 
+              alt="HerFlowMate" 
+              className="w-48 h-auto object-contain" 
+            />
+            <span className="text-xl font-bold tracking-tight text-[#38BDF8]">Admin</span>
           </div>
         </div>
         

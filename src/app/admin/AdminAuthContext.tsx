@@ -5,7 +5,7 @@ import { Session } from "@supabase/supabase-js";
 interface AdminAuthContextType {
   isAuthenticated: boolean;
   session: Session | null;
-  role: 'admin' | 'staff' | null;
+  role: 'admin' | 'staff' | 'revoked' | null;
   logout: () => Promise<void>;
   isLoading: boolean;
 }
@@ -14,7 +14,7 @@ const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefin
 
 export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
-  const [role, setRole] = useState<'admin' | 'staff' | null>(null);
+  const [role, setRole] = useState<'admin' | 'staff' | 'revoked' | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -51,7 +51,16 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
         .single();
       
       if (error) throw error;
-      setRole(data?.role || 'staff');
+      
+      const fetchedRole = data?.role || 'staff';
+      
+      if (fetchedRole === 'revoked') {
+        await supabase.auth.signOut();
+        setSession(null);
+        setRole(null);
+      } else {
+        setRole(fetchedRole);
+      }
     } catch (err) {
       console.error('Error fetching role:', err);
       // Default to staff if there's an error to be safe

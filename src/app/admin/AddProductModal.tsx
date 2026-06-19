@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { X } from "lucide-react";
+import { X, Upload } from "lucide-react";
 import { Product } from "../data/products";
+import { supabase } from "../../lib/supabase";
 
 interface AddProductModalProps {
   isOpen: boolean;
@@ -19,39 +20,69 @@ export function AddProductModal({ isOpen, onClose, onAdd }: AddProductModalProps
     packagingCost: ""
   });
 
+  const [file, setFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Create new mock product
-    const newProduct: Product = {
-      id: Math.floor(Math.random() * 10000), // Random ID for mock
-      slug: formData.name.toLowerCase().replace(/\s+/g, '-'),
-      name: formData.name,
-      sku: formData.sku,
-      price: parseFloat(formData.price) || 0,
-      stock: parseInt(formData.stock) || 0,
-      manufacturingCost: parseFloat(formData.manufacturingCost) || 0,
-      shippingCost: parseFloat(formData.shippingCost) || 0,
-      packagingCost: parseFloat(formData.packagingCost) || 0,
-      // Default mock fields
-      tagline: "New Product",
-      description: "Description coming soon.",
-      originalPrice: null,
-      image: "https://via.placeholder.com/150",
-      variants: [],
-      features: []
-    };
+    setIsUploading(true);
 
-    onAdd(newProduct);
-    
-    // Reset form
-    setFormData({
-      name: "", sku: "", price: "", stock: "", 
-      manufacturingCost: "", shippingCost: "", packagingCost: ""
-    });
-    onClose();
+    let imageUrl = "https://via.placeholder.com/150";
+
+    try {
+      if (file) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `product-${Date.now()}.${fileExt}`;
+        const { error: uploadError } = await supabase.storage
+          .from('public-assets')
+          .upload(fileName, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data } = supabase.storage
+          .from('public-assets')
+          .getPublicUrl(fileName);
+        
+        if (data?.publicUrl) imageUrl = data.publicUrl;
+      }
+
+      // Create new mock product
+      const newProduct: Product = {
+        id: Math.floor(Math.random() * 10000), // Random ID for mock
+        slug: formData.name.toLowerCase().replace(/\s+/g, '-'),
+        name: formData.name,
+        sku: formData.sku,
+        price: parseFloat(formData.price) || 0,
+        stock: parseInt(formData.stock) || 0,
+        manufacturingCost: parseFloat(formData.manufacturingCost) || 0,
+        shippingCost: parseFloat(formData.shippingCost) || 0,
+        packagingCost: parseFloat(formData.packagingCost) || 0,
+        // Default mock fields
+        tagline: "New Product",
+        description: "Description coming soon.",
+        originalPrice: null,
+        image: imageUrl,
+        variants: [],
+        features: []
+      };
+
+      onAdd(newProduct);
+      
+      // Reset form
+      setFormData({
+        name: "", sku: "", price: "", stock: "", 
+        manufacturingCost: "", shippingCost: "", packagingCost: ""
+      });
+      setFile(null);
+      onClose();
+    } catch (err) {
+      console.error("Failed to add product", err);
+      alert("Failed to add product image");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,6 +104,20 @@ export function AddProductModal({ isOpen, onClose, onAdd }: AddProductModalProps
           <form id="add-product-form" onSubmit={handleSubmit} className="space-y-4">
             
             <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2">
+                <label className="block text-sm font-medium text-gray-400 mb-1">Product Image</label>
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files && e.target.files[0]) {
+                      setFile(e.target.files[0]);
+                    }
+                  }}
+                  className="w-full bg-[#0F172A] border border-gray-700 text-gray-400 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#38BDF8] focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#1E293B] file:text-[#38BDF8] hover:file:bg-[#1E293B]/80 cursor-pointer" 
+                />
+              </div>
+
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-400 mb-1">Product Name</label>
                 <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full bg-[#0F172A] border border-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#38BDF8] focus:outline-none" placeholder="e.g. Heating Pad" />
@@ -116,8 +161,17 @@ export function AddProductModal({ isOpen, onClose, onAdd }: AddProductModalProps
           <button onClick={onClose} className="px-4 py-2 text-gray-400 hover:text-white transition-colors">
             Cancel
           </button>
-          <button type="submit" form="add-product-form" className="bg-[#38BDF8] text-[#0F172A] font-bold px-6 py-2 rounded-lg hover:bg-[#38BDF8]/90 transition-colors shadow-lg shadow-[#38BDF8]/20">
-            Add Product
+          <button 
+            type="submit" 
+            form="add-product-form" 
+            disabled={isUploading}
+            className={`font-bold px-6 py-2 rounded-lg transition-colors shadow-lg ${
+              isUploading 
+                ? 'bg-gray-800 text-gray-500 cursor-not-allowed' 
+                : 'bg-[#38BDF8] text-[#0F172A] hover:bg-[#38BDF8]/90 shadow-[#38BDF8]/20'
+            }`}
+          >
+            {isUploading ? "Uploading..." : "Add Product"}
           </button>
         </div>
 

@@ -1,6 +1,7 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Package } from "lucide-react";
 import heroImg from "../../assets/menstrual_cup_hero.png";
 import { useCart } from "./CartContext";
+import { Link } from "react-router";
 
 export function Hero() {
   const { setQuizOpen } = useCart();
@@ -55,9 +56,16 @@ export function Hero() {
           </p>
 
           {/* Buttons Row */}
-          <div className="flex flex-col sm:flex-row gap-3.5 mt-2">
+          <div className="flex flex-col sm:flex-row gap-3.5 mt-2 flex-wrap">
+            <Link
+              to="/custom-order"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white bg-gradient-to-r from-[#F8C8D1] to-[#F3A5B8] hover:opacity-90 transition-all duration-200 shadow-lg shadow-[#F8C8D1]/20 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <Package size={16} />
+              Order your custom box today
+            </Link>
             <button
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-[#2C3E50] bg-[#F8C8D1] hover:bg-[#FDF1F3] transition-all duration-200 shadow-md shadow-[#F8C8D1]/15 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold bg-white text-[#2C3E50] hover:bg-[#FAFAFA] transition-all duration-200 border border-[#2C3E50]/15 shadow-sm transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
             >
               Explore Products
