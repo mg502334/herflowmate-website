@@ -211,8 +211,7 @@ export function CustomOrderPage() {
       isSubscription: billing === "monthly",
       frequency: billing === "monthly" ? "4 weeks" : undefined,
     });
-    // Redirect or show success
-    window.location.href = "/?success=true";
+    // AddToCart automatically opens the cart drawer, so we don't need to do anything else here.
   };
 
   const currentBrandData = brandsCatalog.find(b => b.brand === brand);
