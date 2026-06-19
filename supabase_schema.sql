@@ -53,6 +53,7 @@ CREATE TABLE public.profiles (
   last_name text,
   phone text,
   shipping_street text,
+  shipping_apt text,
   shipping_city text,
   shipping_state text,
   shipping_zip text,

@@ -15,6 +15,7 @@ export function AccountDetails() {
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [street, setStreet] = useState('');
+  const [apt, setApt] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zip, setZip] = useState('');
@@ -38,6 +39,7 @@ export function AccountDetails() {
       setLastName(data.last_name || '');
       setPhone(data.phone || '');
       setStreet(data.shipping_street || '');
+      setApt(data.shipping_apt || '');
       setCity(data.shipping_city || '');
       setState(data.shipping_state || '');
       setZip(data.shipping_zip || '');
@@ -59,6 +61,7 @@ export function AccountDetails() {
         last_name: lastName,
         phone: phone,
         shipping_street: street,
+        shipping_apt: apt,
         shipping_city: city,
         shipping_state: state,
         shipping_zip: zip,
@@ -155,15 +158,27 @@ export function AccountDetails() {
             </div>
 
             <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-bold text-gray-600 mb-2">Street Address</label>
-                <input
-                  type="text"
-                  value={street}
-                  onChange={(e) => setStreet(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#F8C8D1] focus:ring-2 focus:ring-[#F8C8D1]/20 outline-none transition-all"
-                  placeholder="123 Main St, Apt 4B"
-                />
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold text-gray-600 mb-2">Street Address</label>
+                  <input
+                    type="text"
+                    value={street}
+                    onChange={(e) => setStreet(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#F8C8D1] focus:ring-2 focus:ring-[#F8C8D1]/20 outline-none transition-all"
+                    placeholder="123 Main St"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-600 mb-2">Apt, Suite, etc. (Optional)</label>
+                  <input
+                    type="text"
+                    value={apt}
+                    onChange={(e) => setApt(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#F8C8D1] focus:ring-2 focus:ring-[#F8C8D1]/20 outline-none transition-all"
+                    placeholder="Apt 4B"
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div className="col-span-2">
