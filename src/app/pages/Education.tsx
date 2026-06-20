@@ -74,6 +74,51 @@ export function Education() {
       content: "Cervical health is a critical part of a woman's wellness journey. Regular screenings, such as Pap smears and HPV tests, usually begin in your 20s and are the most effective way to prevent cervical cancer. Education and proactive care empower you to stay healthy and informed about your body.",
       color: "bg-[#E0F2F1]",
       border: "border-[#4DB6AC]"
+    },
+    {
+      id: "breast-cancer",
+      title: "Breast Health & Cancer Awareness",
+      icon: <HeartPulse className="text-[#F48FB1]" size={28} />,
+      image: "/breast_cancer_education.png",
+      content: "Breast health is a lifelong commitment. Breast cancer is one of the most common cancers among women, making early detection your strongest defense. Getting into the habit of monthly breast self-exams and adhering to clinical screening guidelines (like mammograms) can literally save your life. Knowing your 'normal' helps you spot any unusual changes quickly.",
+      color: "bg-[#FCE4EC]",
+      border: "border-[#F48FB1]"
+    },
+    {
+      id: "bladder-leaks",
+      title: "Understanding Bladder Leaks",
+      icon: <Droplets className="text-[#64B5F6]" size={28} />,
+      image: "/bladder_leaks_education.png",
+      content: "Bladder leaks, or urinary incontinence, are incredibly common and affect many women, especially during pregnancy, postpartum, or menopause. It happens when pelvic floor muscles weaken or when there's unexpected pressure on the bladder. While completely normal, you don't have to navigate it without support—targeted pelvic exercises and the right protective products can offer comfort and confidence.",
+      color: "bg-[#E3F2FD]",
+      border: "border-[#64B5F6]"
+    },
+    {
+      id: "uti",
+      title: "Urinary Tract Infections (UTI)",
+      icon: <ShieldAlert className="text-[#EF9A9A]" size={28} />,
+      image: "/uti_education.png",
+      content: "Urinary Tract Infections (UTIs) occur when bacteria enter the urinary system. They are incredibly common, especially for women, due to anatomical structure. Symptoms like a burning sensation, frequent urges to urinate, and pelvic pain mean it's time to see a doctor. Staying hydrated, practicing good hygiene, and urinating after intimacy are powerful preventative steps.",
+      color: "bg-[#FFEBEE]",
+      border: "border-[#EF9A9A]"
+    },
+    {
+      id: "yeast-infections",
+      title: "Yeast Infections",
+      icon: <Wind className="text-[#A5D6A7]" size={28} />,
+      image: "/yeast_infection_education.png",
+      content: "Vaginal yeast infections are extremely common and occur when the natural balance of your microbiome shifts, allowing yeast (Candida) to overgrow. Symptoms often include itching, irritation, and unusual discharge. They are easily treatable with over-the-counter or prescription antifungals. Wearing breathable cotton underwear and avoiding heavily scented products can help maintain your natural balance.",
+      color: "bg-[#E8F5E9]",
+      border: "border-[#A5D6A7]"
+    },
+    {
+      id: "tss",
+      title: "Toxic Shock Syndrome (TSS)",
+      icon: <ShieldAlert className="text-[#FF8A65]" size={28} />,
+      image: "/menstruation_education.png",
+      content: "Toxic Shock Syndrome (TSS) is a rare but life-threatening bacterial infection that can be linked to leaving high-absorbency tampons in for too long. Symptoms include a sudden high fever, vomiting, diarrhea, and a sunburn-like rash. To prevent TSS, always use the lowest absorbency tampon necessary for your flow and change it every 4-8 hours. When sleeping overnight, always opt for pads or period underwear instead of tampons.",
+      color: "bg-[#FBE9E7]",
+      border: "border-[#FF8A65]"
     }
   ];
 

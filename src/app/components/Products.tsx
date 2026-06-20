@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { ShoppingBag, Check } from "lucide-react";
+import { ShoppingBag, Check, Info } from "lucide-react";
 import { useCart } from "./CartContext";
 import { useProducts } from "../data/useProducts";
 import { Link } from "react-router";
+import { FlowGuideModal } from "./FlowGuideModal";
 
 export function Products() {
   const { addToCart } = useCart();
   const { products, loading } = useProducts();
   const [addedIds, setAddedIds] = useState<number[]>([]);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [selectedVariants, setSelectedVariants] = useState<Record<number, string>>({
     1: "Regular",
     2: "Regular",
@@ -54,9 +56,16 @@ export function Products() {
           >
             Shop Individual Brands
           </h2>
-          <p className="text-xs text-gray-500 max-w-md">
+          <p className="text-xs text-gray-500 max-w-md mb-2">
             Prefer not to subscribe? Stock up on your favorite specific brands and products directly from our A La Carte shop.
           </p>
+          <button 
+            onClick={() => setGuideOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-[#957DAD]/30 text-[#957DAD] rounded-full text-xs font-bold hover:bg-[#F0E6FA] transition-colors shadow-sm"
+          >
+            <Info size={14} />
+            Not sure what to buy? View Product & Flow Guide
+          </button>
         </div>
 
         {loading ? (
@@ -184,6 +193,8 @@ export function Products() {
           </div>
         )}
       </div>
+      
+      <FlowGuideModal open={guideOpen} onOpenChange={setGuideOpen} />
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { Heart, Printer, CheckCircle2 } from "lucide-react";
+import { Heart, Printer, CheckCircle2, Sparkles } from "lucide-react";
 import logoWhite from "../../assets/herflowmate-logo-white.png";
 import { useEffect } from "react";
 
@@ -115,6 +115,144 @@ export function PubertyFlyer() {
               </ul>
             </div>
             
+            {/* Handling Cramps */}
+            <div className="col-span-1 sm:col-span-2 mt-2 bg-[#FDF1F3] rounded-[32px] p-8 border border-[#F8C8D1]/30">
+              <h2 style={{ fontFamily: "'Playfair Display', serif" }} className="text-2xl font-bold mb-4 text-[#2C3E50]">
+                Navigating Cramps & Discomfort
+              </h2>
+              <p className="text-gray-700 font-medium mb-5">
+                When you get your period, it's very common to experience lower belly or back pain, known as cramps. This happens because your body is working to shed the uterine lining. While normal, you don't have to just "tough it out." Here are some proven ways to find relief:
+              </p>
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="flex flex-col gap-2 bg-white p-5 rounded-2xl shadow-sm border border-pink-50">
+                  <span className="font-bold text-[#F06292] flex items-center gap-2">🔥 Use Heat</span>
+                  <p className="text-sm text-gray-600">A warm heating pad or hot water bottle helps relax the muscles instantly. <strong>Caution:</strong> Never apply direct heat to bare skin and never fall asleep with an electric heating pad turned on!</p>
+                </div>
+                <div className="flex flex-col gap-2 bg-white p-5 rounded-2xl shadow-sm border border-pink-50">
+                  <span className="font-bold text-[#F06292] flex items-center gap-2">🛌 Rest & Comfort</span>
+                  <p className="text-sm text-gray-600">Listen to your body! Sometimes the absolute best thing you can do is curl up, get comfortable, and sleep through the worst of the pain.</p>
+                </div>
+                <div className="flex flex-col gap-2 bg-white p-5 rounded-2xl shadow-sm border border-pink-50">
+                  <span className="font-bold text-[#F06292] flex items-center gap-2">💊 OTC Relief</span>
+                  <p className="text-sm text-gray-600">Over-the-counter pain relievers like Ibuprofen or Midol are highly effective at stopping cramps. Always ask a trusted adult for the right dose first!</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Flow Guide Section */}
+            <div className="col-span-1 sm:col-span-2 mt-4 flex flex-col gap-8 pt-8 border-t border-gray-100">
+              <div className="text-center">
+                <h2 style={{ fontFamily: "'Playfair Display', serif" }} className="text-3xl font-bold text-[#2C3E50]">
+                  Product & Flow Guide
+                </h2>
+                <p className="text-gray-600 mt-2 max-w-2xl mx-auto font-medium">
+                  Understanding what products to use and when can take the guesswork out of your period.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-10">
+                {/* Absorbency */}
+                <div className="flex flex-col gap-5">
+                  <h3 className="text-xl font-bold text-[#2C3E50] border-b-2 border-[#E0BBE4] w-fit pb-1">
+                    Understanding "Drops"
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex gap-3 items-start">
+                      <div className="flex text-blue-300 shrink-0 mt-1 tracking-widest text-sm">💧<span className="opacity-20 grayscale">💧💧</span></div>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Light (1 Drop)</span>
+                        <p className="text-sm text-gray-600">Best for spotting or the very beginning/end of your period.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 items-start">
+                      <div className="flex text-blue-400 shrink-0 mt-1 tracking-widest text-sm">💧💧<span className="opacity-20 grayscale">💧</span></div>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Regular (2 Drops)</span>
+                        <p className="text-sm text-gray-600">The standard for average flow days. Change every 4-6 hours.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3 items-start">
+                      <div className="flex text-blue-500 shrink-0 mt-1 tracking-widest text-sm">💧💧💧</div>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Super / Heavy (3+ Drops)</span>
+                        <p className="text-sm text-gray-600">For heavy flow days (usually days 1-2). Designed to hold more fluid.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Decorative Box to balance columns */}
+                  <div className="mt-4 flex-1 flex flex-col justify-end">
+                    <div className="w-full h-48 rounded-[24px] bg-gradient-to-br from-[#F8C8D1]/30 to-[#E0BBE4]/30 flex flex-col items-center justify-center border-2 border-white shadow-sm relative overflow-hidden">
+                      <Heart className="absolute -top-4 -left-4 text-[#F8C8D1] opacity-50" size={80} fill="currentColor" />
+                      <Heart className="absolute -bottom-6 -right-6 text-[#E0BBE4] opacity-50" size={100} fill="currentColor" />
+                      <Sparkles className="text-[#957DAD] mb-2 z-10" size={32} />
+                      <span className="font-bold text-[#2C3E50] tracking-widest uppercase text-sm z-10">You've Got This!</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Product Types */}
+                <div className="flex flex-col gap-5">
+                  <h3 className="text-xl font-bold text-[#2C3E50] border-b-2 border-[#957DAD] w-fit pb-1">
+                    Types of Protection
+                  </h3>
+                  <ul className="flex flex-col gap-4">
+                    <li className="flex gap-3 items-start">
+                      <span className="text-xl shrink-0">🌸</span>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Pads & Liners</span>
+                        <p className="text-sm text-gray-600">Worn in your underwear. The best and easiest choice when first starting your period!</p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="text-xl shrink-0">🩲</span>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Period Underwear</span>
+                        <p className="text-sm text-gray-600">Looks like regular underwear but magically absorbs flow. Super comfortable and reusable.</p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="text-xl shrink-0">💧</span>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Tampons</span>
+                        <p className="text-sm text-gray-600">Worn internally. Ideal for swimming or sports. Once inserted correctly, you won't even feel them.</p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                      <span className="text-xl shrink-0">🌙</span>
+                      <div>
+                        <span className="font-bold text-[#2C3E50]">Overnight Pads</span>
+                        <p className="text-sm text-gray-600">Extra-long pads designed to prevent leaks while lying down asleep.</p>
+                      </div>
+                    </li>
+                  </ul>
+                  
+                  <div className="mt-2 bg-[#FFF3E0] p-4 rounded-xl border border-[#FFCC80]/50 flex gap-3 items-start">
+                    <span className="text-xl shrink-0">⚠️</span>
+                    <div>
+                      <span className="font-bold text-[#E65100] text-sm block mb-0.5">Important Tampon Safety (TSS)</span>
+                      <p className="text-xs text-[#E65100]/90 leading-relaxed">Toxic Shock Syndrome (TSS) is a rare but serious infection. To prevent it, always use the lowest absorbency tampon needed and <strong>change it every 4-8 hours</strong>. Never wear a tampon overnight while sleeping—always use a pad instead!</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Disposal Section */}
+              <div className="bg-[#E0F2F1] rounded-[24px] p-6 border border-[#4DB6AC]/30 flex flex-col sm:flex-row gap-6 items-center mt-2">
+                <div className="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0 text-3xl">
+                  🗑️
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#00796B] text-lg mb-1.5">Proper Disposal Do's & Don'ts</h3>
+                  <p className="text-sm text-[#00796B]/90 font-medium leading-relaxed">
+                    <strong>Never flush</strong> pads, tampons, or wrappers down the toilet—they will clog the plumbing! Instead, wrap your used product in toilet paper (or its original wrapper) and throw it in the trash bin. When using public restrooms, look for the small sanitary bins provided inside the stalls.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>
