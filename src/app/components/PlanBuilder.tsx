@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, Shield, PackageOpen, ArrowRight, Sparkles } from "lucide-react";
 import { useCart } from "./CartContext";
+import padsHero from "../../assets/pads_hero.png";
 import { motion, AnimatePresence } from "motion/react";
 
 const tiers = [
@@ -62,7 +63,7 @@ export function PlanBuilder() {
       name: `${activeTier.name} Box`,
       variant: `${mixLabel} (${flowLabel})${extraLabel}`,
       price: currentPrice,
-      image: "https://images.unsplash.com/photo-1601379327190-e3ef16de9845?w=600&h=700&fit=crop&auto=format",
+      image: padsHero,
       isSubscription: billing === "monthly",
       frequency: billing === "monthly" ? "4 weeks" : undefined,
     });
