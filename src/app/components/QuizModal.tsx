@@ -2,8 +2,6 @@ import { useState } from "react";
 import { X, Check, ArrowRight, ArrowLeft, RefreshCw } from "lucide-react";
 import { useCart } from "./CartContext";
 import cupHero from "../../assets/menstrual_cup_hero.png";
-import padsHero from "../../assets/pads_hero.png";
-import tamponsHero from "../../assets/tampons_hero.png";
 
 const questions = [
   {
@@ -94,7 +92,7 @@ export function QuizModal() {
         type: "box",
         name: "Comfort Plus Subscription Box",
         price: 22,
-        image: padsHero,
+        image: "/tampons.png",
         desc: "Designed for intensive support. Includes standard essentials plus self-care extras like heat-patches and premium tea.",
         features: ["GOTS Certified Cotton", "OB-GYN Approved fit", "Self-care additions included"],
         variant: "Heavy Mix Box",
@@ -108,7 +106,7 @@ export function QuizModal() {
         type: "box",
         name: "Basic Care Subscription Box",
         price: 14,
-        image: padsHero,
+        image: "/tampons.png",
         desc: "Your light monthly essentials. Fully premium, direct to your door, packaged in customized brand mailers.",
         features: ["100% Premium cotton", "Super-thin, active-proof", "Plain discreet box shipping"],
         variant: "Light Pads Box",
@@ -122,7 +120,7 @@ export function QuizModal() {
       type: "box",
       name: "Wellness Bundle Box",
       price: 32,
-      image: tamponsHero,
+      image: "/tampons.png",
       desc: "The ultimate period care box. Contains full premium hygiene coverage, custom discreet brand storage bag, and curated premium self‑care goods.",
       features: ["Pads, liners & tampons included", "Includes custom brand cloth bag", "Cancel subscription anytime"],
       variant: "Full Wellness Bundle",

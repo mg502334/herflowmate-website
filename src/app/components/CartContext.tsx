@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import padsHero from "../../assets/pads_hero.png";
 
 export interface CartItem {
   id: string | number;
@@ -114,7 +113,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       name: "Custom Discreet Brand Bag",
       variant: "Exclusive Gift",
       price: 0,
-      image: padsHero,
+      image: "/tampons.png",
       isSubscription: false
     });
   };
