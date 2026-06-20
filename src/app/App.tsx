@@ -13,6 +13,8 @@ import { Shop } from "./pages/Shop";
 import { ProductDetails } from "./pages/ProductDetails";
 import { Legal } from "./pages/Legal";
 import { CustomOrderPage } from "./pages/CustomOrderPage";
+import { Education } from "./pages/Education";
+import { PubertyFlyer } from "./pages/PubertyFlyer";
 
 import { useEffect } from "react";
 
@@ -73,6 +75,8 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/mission" element={<Mission />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/learn" element={<Education />} />
+            <Route path="/flyer/puberty" element={<PubertyFlyer />} />
             <Route path="/custom-order" element={<CustomOrderPage />} />
             <Route path="/product/:slug" element={<ProductDetails />} />
             <Route path="/legal" element={<Legal />} />

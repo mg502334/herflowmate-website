@@ -4,14 +4,14 @@ import logoWhite from "../../assets/herflowmate-logo-white.png";
 
 const links = {
   Shop: ["Cotton Pads", "Tampons", "Menstrual Cup", "Starter Kit", "Gift Sets"],
-  Company: ["About Us", "Our Mission", "Sustainability", "Press", "Careers"],
+  Company: ["About Us", "Our Mission", "Learn", "Sustainability", "Press", "Careers"],
   Support: ["FAQ", "Shipping Info", "Returns", "Contact Us", "Size Guide"],
   Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
 };
 
 export function Footer() {
   return (
-    <footer style={{ background: "#2C3E50" }}>
+    <footer className="print:hidden" style={{ background: "#2C3E50" }}>
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-8 mb-14">
           {/* Brand */}
@@ -58,9 +58,9 @@ export function Footer() {
               <ul className="flex flex-col gap-2">
                 {items.map((item) => (
                   <li key={item}>
-                    {item === "About Us" || item === "Our Mission" ? (
+                    {item === "About Us" || item === "Our Mission" || item === "Learn" ? (
                       <Link
-                        to={item === "About Us" ? "/about" : "/mission"}
+                        to={item === "About Us" ? "/about" : item === "Learn" ? "/learn" : "/mission"}
                         style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.875rem", color: "rgba(250,247,244,0.6)" }}
                         onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#FAFAFA"; }}
                         onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "rgba(250,247,244,0.6)"; }}

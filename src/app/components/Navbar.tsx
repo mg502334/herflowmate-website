@@ -22,7 +22,7 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex flex-col bg-[#F8C8D1] ${
+      className={`print:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex flex-col bg-[#F8C8D1] ${
         scrolled ? "shadow-md shadow-[#2C3E50]/10 backdrop-blur-md bg-[#F8C8D1]/95" : ""
       }`}
     >
@@ -62,6 +62,15 @@ export function Navbar() {
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               Shop
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/learn"
+              className="text-sm font-semibold text-[#2C3E50]/85 hover:text-[#2C3E50] transition-colors duration-200"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              Learn
             </Link>
           </li>
           <li>
@@ -162,6 +171,14 @@ export function Navbar() {
             onClick={() => setOpen(false)}
           >
             Shop
+          </Link>
+          <Link
+            to="/learn"
+            className="text-sm font-semibold text-[#2C3E50] hover:text-[#2C3E50] py-1"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            onClick={() => setOpen(false)}
+          >
+            Learn
           </Link>
           <button
             className="text-sm font-semibold text-[#2C3E50] hover:text-[#2C3E50] py-1 text-left flex items-center gap-1.5"
