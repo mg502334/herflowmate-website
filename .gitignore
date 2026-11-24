@@ -1,4 +1,64 @@
-.vercel
-.env*
-node_modules/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostic / Runtime / Build outputs
 dist/
+dist-ssr/
+build/
+out/
+.vite/
+.turbo/
+.cache/
+.eslintcache
+*.local
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Deployment & Hosting
+.vercel
+.output
+
+# Environment & Secret files
+.env
+.env*
+*.env
+*.pem
+*.key
+add_env.cjs
+
+# Editor & IDE directories
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Local scratch, temporary, and trigger files
+trigger.txt
+download_banner.html
+make_transparent.ps1
+resize_banner.cjs
+*.tmp
+*.bak
